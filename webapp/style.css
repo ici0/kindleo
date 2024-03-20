@@ -1,0 +1,45 @@
+body {
+    /* background-color: #99d6a4; */
+    caret-color: transparent; /* hide caret */
+}
+
+.content-container {
+    padding-top: 30vh; /* Adds space at the top */
+    text-align: center; /* Center aligns the text */
+    font-size: 120px;
+}
+
+.word {
+    /* color: #4CAF50; */
+    color: black;
+}
+
+buttons{
+}
+button {
+    cursor: pointer; /* Changes the cursor to pointer when hovering over buttons */
+    /* vw not working on kindle */
+    /* font-size: 10vw; */
+    font-size: 80px;
+    padding: 1vh 2vw; /* Adds padding inside the buttons, making them taller and wider */
+    min-width: 400px; /* Ensures buttons have a minimum width */
+    min-height: 160px; /* Ensures buttons have a minimum height */
+    margin: 40px; /* Adds some space around each button */
+    border: none; /* Removes the border, optional */
+    border-radius: 5px; /* Adds rounded corners, optional */
+    background-color: #e2cdcd; /* Bootstrap primary button color for contrast */
+    transition: background-color 0.3s; /* Smooth transition for hover effect, optional */
+}
+button:hover {
+    background-color: #aaaaaa;
+}
+
+#checkMark {
+    width: 15%;
+}
+
+#answer {
+    /* color: #555; */
+    color: black;
+
+}
