@@ -409,7 +409,7 @@ var GameController = {
 
     // Finish play screen with recap
     finishPlay: function() {
-        document.getElementById('word').innerHTML = 'Play Complete!';
+        document.getElementById('word').innerHTML = 'Done!';
         document.getElementById('forgotBtn').style.display = 'none';
         document.getElementById('knowBtn').style.display = 'none';
         document.getElementById('checkMark').style.visibility = 'hidden';
@@ -426,8 +426,6 @@ var GameController = {
                 }
                 recapHtml += '<br><br>';
             }
-
-            recapHtml += '<br>Tap anywhere or press any key to continue...';
 
             document.getElementById('answer').innerHTML = recapHtml;
             document.getElementById('answer').style.visibility = 'visible';
