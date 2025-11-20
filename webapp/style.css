@@ -4,7 +4,7 @@ body {
 }
 
 .content-container {
-    padding-top: 30vh; /* Adds space at the top */
+    padding-top: 20vh; /* Adds space at the top */
     text-align: center; /* Center aligns the text */
     font-size: 120px;
 }
