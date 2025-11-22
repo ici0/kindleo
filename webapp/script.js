@@ -104,9 +104,9 @@ var DataManager = {
             var word = {
                 id: wordId,
                 word: item.wd || item.nwd || '',
-                translation: item.tr || '',
+                translation: (item.tr || '').replace(/^"+|"+$/g, ''),
                 transcription: '',  // JSON has audio URL, not text transcription
-                context: item.ctx || '',
+                context: (item.ctx || '').replace(/^"+|"+$/g, ''),
                 contextTranslation: item.ctx_tr || '',
                 partOfSpeech: item.pos || '',
                 score: item.sp || 0
