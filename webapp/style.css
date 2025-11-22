@@ -30,7 +30,7 @@ body {
 .word_field {
     /* color: #4CAF50; */
     color: black;
-    font-size: 10vh;
+    font-size: 9vh;
     max-width: 90%;
     word-wrap: break-word;
     line-height: 1.2;

@@ -415,7 +415,7 @@ var GameController = {
 
         // Show context if available
         if (word.context && word.context !== '') {
-            var contextHtml = '<em>"' + word.context + '"</em>';
+            var contextHtml = '<em>' + word.context + '</em>';
             document.getElementById('context').innerHTML = contextHtml;
             document.getElementById('context').style.visibility = 'visible';
         }
