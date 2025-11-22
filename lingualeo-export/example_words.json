@@ -1,0 +1,74 @@
+[
+  {
+    "as": null,
+    "cd": 1757855236,
+    "ctx": "Se necesita trabajar duro para lograr cualquier cosa.",
+    "ctx_tr": "*",
+    "hasUserTranslate": 0,
+    "id": 161645490,
+    "lid": 161645490,
+    "ls": 2,
+    "lwd": null,
+    "newWord": 0,
+    "nwd": "lograr",
+    "pi": 4,
+    "pic": "https://contentcdn.lingualeo.com/uploads/picture/996889.png",
+    "pos": "VERB",
+    "pron": "https://audiocdn.lingualeo.com/v2/56/bG9ncmFy10094c3b.mp3",
+    "repeatable": 0,
+    "sc": "350952777100361760",
+    "scr": null,
+    "sp": 0,
+    "tn": "1221937897213526086",
+    "tr": "достичь",
+    "trId": 1,
+    "trc": "достичь",
+    "twordId": 142077637,
+    "vt": 1,
+    "wd": "lograr",
+    "ws": [
+      {
+        "countWords": 0,
+        "id": 1,
+        "name": "Мой словарь"
+      }
+    ],
+    "wt": 1
+  },
+  {
+    "as": null,
+    "cd": 1757272277,
+    "ctx": "Y a Christian contestar: \"Bien.",
+    "ctx_tr": "*",
+    "hasUserTranslate": 0,
+    "id": 161679477,
+    "lid": 161679477,
+    "ls": 2,
+    "lwd": null,
+    "newWord": 0,
+    "nwd": "contestar",
+    "pi": 4,
+    "pic": "https://contentcdn.lingualeo.com/uploads/picture/97277.png",
+    "pos": "VERB",
+    "pron": "https://audiocdn.lingualeo.com/v2/56/Y29udGVzdGFy5c4ad34c.mp3",
+    "repeatable": 0,
+    "sc": "350962557529423904",
+    "scr": null,
+    "sp": 12,
+    "tn": "1221726790980993092",
+    "tr": "отвечать",
+    "trId": 48,
+    "trc": "отвечать",
+    "twordId": 136496257,
+    "vt": 24201,
+    "wd": "contestar",
+    "ws": [
+      {
+        "countWords": 0,
+        "id": 1,
+        "name": "Мой словарь"
+      }
+    ],
+    "wt": 1
+  }
+]
