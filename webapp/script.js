@@ -309,6 +309,8 @@ var GameController = {
         this.currentIndex = 0;
         this.forgottenWords = [];
         this.isProcessing = false;
+        // In case we restart the game - we need to cleanup the block to avoid very long scroll
+        document.getElementById('answer').innerHTML = '';
         this.showWord();
     },
 
@@ -324,7 +326,7 @@ var GameController = {
             self.handleForgot();
         });
 
-        // Enable keyboard controls for non-Kindle browsers
+        // Keyboard controls (non-Kindle)
         if (!this.isKindle) {
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'ArrowLeft') {
@@ -333,6 +335,43 @@ var GameController = {
                     document.getElementById('knowBtn').click();
                 }
             });
+
+            // Double-click to toggle fullscreen
+            document.addEventListener('dblclick', function() {
+                self.toggleFullscreen();
+            });
+        }
+
+        // Long-press to toggle fullscreen (mobile)
+        var pressTimer = null;
+        document.addEventListener('touchstart', function(e) {
+            pressTimer = setTimeout(function() {
+                self.toggleFullscreen();
+            }, 700);
+        });
+        document.addEventListener('touchend', function() {
+            clearTimeout(pressTimer);
+        });
+        document.addEventListener('touchmove', function() {
+            clearTimeout(pressTimer);
+        });
+    },
+
+    // Toggle fullscreen mode
+    toggleFullscreen: function() {
+        var doc = document;
+        var elem = doc.documentElement;
+
+        if (doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement) {
+            // Exit fullscreen
+            if (doc.exitFullscreen) doc.exitFullscreen();
+            else if (doc.webkitExitFullscreen) doc.webkitExitFullscreen();
+            else if (doc.mozCancelFullScreen) doc.mozCancelFullScreen();
+        } else {
+            // Enter fullscreen
+            if (elem.requestFullscreen) elem.requestFullscreen();
+            else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+            else if (elem.mozRequestFullScreen) elem.mozRequestFullScreen();
         }
     },
 
