@@ -15,6 +15,7 @@ Usage:
 import os
 import re
 import sys
+import json
 import base64
 import argparse
 from pathlib import Path
@@ -124,9 +125,14 @@ def bundle(html_file, output_file=None, data_file=None):
         data_path = Path(data_file)
         if not data_path.is_absolute():
             data_path = base_dir / data_file
-        embedded_data = read_file(data_path)
-        if embedded_data:
+        try:
+            with open(data_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            # Re-serialize to ensure proper escaping (newlines, quotes, etc.)
+            embedded_data = json.dumps(data, ensure_ascii=False)
             print(f"  + Embedding data: {data_file}")
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Warning: Could not load data file: {e}")
 
     # Inline CSS
     css_path = base_dir / 'style.css'
