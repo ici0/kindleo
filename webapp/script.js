@@ -288,23 +288,28 @@ var GameController = {
 
         // Load dictionary
         DataManager.loadDictionary(function() {
-            // Select session words
-            self.sessionWords = WordSelector.selectSession(
-                DataManager.fullDictionary,
-                CONFIG.SESSION_SIZE
-            );
-
-            if (self.sessionWords.length === 0) {
-                alert('No words available in dictionary!');
-                return;
-            }
-
-            self.currentIndex = 0;
-            self.forgottenWords = [];
-            self.isProcessing = false;
             self.setupEventListeners();
-            self.showWord();
+            self.startNewSession();
         });
+    },
+
+    // Start a new session without reloading (reuses loaded dictionary)
+    startNewSession: function() {
+        // Select session words
+        this.sessionWords = WordSelector.selectSession(
+            DataManager.fullDictionary,
+            CONFIG.SESSION_SIZE
+        );
+
+        if (this.sessionWords.length === 0) {
+            alert('No words available in dictionary!');
+            return;
+        }
+
+        this.currentIndex = 0;
+        this.forgottenWords = [];
+        this.isProcessing = false;
+        this.showWord();
     },
 
     // Setup button click handlers
@@ -462,9 +467,10 @@ var GameController = {
             document.getElementById('context').style.visibility = 'hidden';
         }
 
-        // Wait for user input (keypress or tap) to reload
+        // Wait for user input (keypress or tap) to start new session
+        var self = this;
         this.waitForInput(function() {
-            window.location.reload();
+            self.startNewSession();
         });
     }
 };
