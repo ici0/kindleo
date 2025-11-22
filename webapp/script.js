@@ -348,7 +348,7 @@ var GameController = {
     showWord: function() {
         var word = this.sessionWords[this.currentIndex];
 
-        document.getElementById('word').innerHTML = word.word;
+        document.getElementById('word_field').innerHTML = word.word;
         document.getElementById('forgotBtn').style.display = 'inline';
         document.getElementById('knowBtn').style.display = 'inline';
         document.getElementById('answer').style.visibility = 'hidden';
@@ -447,7 +447,7 @@ var GameController = {
 
     // Finish play screen with recap
     finishPlay: function() {
-        document.getElementById('word').innerHTML = 'Done!';
+        document.getElementById('word_field').innerHTML = 'Done!';
         document.getElementById('forgotBtn').style.display = 'none';
         document.getElementById('knowBtn').style.display = 'none';
         document.getElementById('checkMark').style.visibility = 'hidden';

@@ -27,7 +27,7 @@ body {
     gap: 5vh;
 }
 
-.word {
+.word_field {
     /* color: #4CAF50; */
     color: black;
     font-size: 10vh;
