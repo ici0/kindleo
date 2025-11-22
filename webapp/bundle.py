@@ -54,6 +54,22 @@ def inline_css(html, css_path):
     return re.sub(pattern, replacement, html)
 
 
+def json_for_js(json_str):
+    """Make JSON safe for embedding in <script> tags.
+
+    JSON allows some characters that break JavaScript:
+    - U+2028 LINE SEPARATOR (valid JSON, invalid JS string literal)
+    - U+2029 PARAGRAPH SEPARATOR (valid JSON, invalid JS string literal)
+    - </script> would close the script tag prematurely
+    """
+    return (json_str
+        .replace('\u2028', '\\u2028')
+        .replace('\u2029', '\\u2029')
+        .replace('</script>', '<\\/script>')
+        .replace('</Script>', '<\\/Script>')
+        .replace('</SCRIPT>', '<\\/SCRIPT>'))
+
+
 def inline_js(html, js_path, embedded_data=None):
     """Replace <script src="..."> with inline <script>."""
     js_content = read_file(js_path)
@@ -62,8 +78,10 @@ def inline_js(html, js_path, embedded_data=None):
 
     # If we have embedded data, modify CONFIG to use it
     if embedded_data:
+        # Make JSON safe for JS embedding
+        safe_data = json_for_js(embedded_data)
         # Add embedded data and modify CONFIG to use null paths
-        data_script = f'var EMBEDDED_DATA = {embedded_data};\n\n'
+        data_script = f'var EMBEDDED_DATA = {safe_data};\n\n'
         # Modify the JS to use embedded data
         js_content = data_script + js_content
         # Replace LOCAL_PATH with null and add embedded data loading
@@ -85,8 +103,8 @@ def inline_js(html, js_path, embedded_data=None):
 
     # Match script tags with src attribute
     pattern = r'<script\s+src=["\'][^"\']*["\'][^>]*>\s*</script>'
-    replacement = f'<script>\n{js_content}\n</script>'
-    return re.sub(pattern, replacement, html)
+    # Use lambda to avoid backslash interpretation in replacement string
+    return re.sub(pattern, lambda m: f'<script>\n{js_content}\n</script>', html)
 
 
 def inline_svgs(html, base_dir):
