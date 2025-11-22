@@ -8,7 +8,8 @@
 var CONFIG = {
     REMOTE_URL: null,  // Set to API endpoint URL or null for offline-only
     LOCAL_PATH: '../lingualeo-export/all_words.json',
-    SESSION_SIZE: 3,
+    LOCAL_PATH: 'all_words.json',
+    SESSION_SIZE: 30,
     KNOW_DELAY: 500,
     FORGOT_DELAY: 4000,
     NETWORK_TIMEOUT: 3000
