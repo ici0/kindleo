@@ -18,6 +18,20 @@ var CONFIG = {
 // DATA MANAGER - Handles loading and persistence
 // =============================================================================
 
+// Helper to strip surrounding quotes from strings
+function stripQuotes(str) {
+    if (!str) return '';
+    // Remove leading quotes
+    while (str.charAt(0) === '"') {
+        str = str.substring(1);
+    }
+    // Remove trailing quotes
+    while (str.charAt(str.length - 1) === '"') {
+        str = str.substring(0, str.length - 1);
+    }
+    return str;
+}
+
 var DataManager = {
     fullDictionary: [],
 
@@ -104,9 +118,9 @@ var DataManager = {
             var word = {
                 id: wordId,
                 word: item.wd || item.nwd || '',
-                translation: (item.tr || '').replace(/^"+|"+$/g, ''),
+                translation: stripQuotes(item.tr),
                 transcription: '',  // JSON has audio URL, not text transcription
-                context: (item.ctx || '').replace(/^"+|"+$/g, ''),
+                context: stripQuotes(item.ctx),
                 contextTranslation: item.ctx_tr || '',
                 partOfSpeech: item.pos || '',
                 score: item.sp || 0
