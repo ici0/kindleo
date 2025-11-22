@@ -249,6 +249,30 @@ var GameController = {
     isKindle: false,
     isProcessing: false,
 
+    // Wait for user input (click, keypress, or touch) before executing callback
+    waitForInput: function(callback, delay) {
+        var actualDelay = delay || 0;
+
+        setTimeout(function() {
+            var handled = false;
+            var handleInput = function(event) {
+                if (!handled) {
+                    handled = true;
+                    // Remove all event listeners
+                    document.removeEventListener('keydown', handleInput);
+                    document.removeEventListener('click', handleInput);
+                    document.removeEventListener('touchend', handleInput);
+                    callback();
+                }
+            };
+
+            // Add event listeners (Kindle-compatible without 'once' option)
+            document.addEventListener('keydown', handleInput);
+            document.addEventListener('click', handleInput);
+            document.addEventListener('touchend', handleInput);
+        }, actualDelay);
+    },
+
     // Initialize the game
     init: function() {
         var self = this;
@@ -365,10 +389,10 @@ var GameController = {
         // Show answer
         this.showAnswer();
 
-        // Move to next word after delay (longer to read context)
-        setTimeout(function() {
+        // Wait for user input to continue (with delay to prevent immediate trigger)
+        this.waitForInput(function() {
             self.nextWord();
-        }, CONFIG.FORGOT_DELAY);
+        }, 300);
     },
 
     // Show answer card
@@ -438,18 +462,9 @@ var GameController = {
         }
 
         // Wait for user input (keypress or tap) to reload
-        var reloaded = false;
-        var reloadPage = function() {
-            if (!reloaded) {
-                reloaded = true;
-                window.location.reload();
-            }
-        };
-
-        // Add event listeners (Kindle-compatible without 'once' option)
-        document.addEventListener('keydown', reloadPage);
-        document.addEventListener('click', reloadPage);
-        document.addEventListener('touchstart', reloadPage);
+        this.waitForInput(function() {
+            window.location.reload();
+        });
     }
 };
 
