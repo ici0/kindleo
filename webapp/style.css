@@ -60,8 +60,10 @@ button {
     text-overflow: ellipsis;
 }
 
-button:hover {
-    background-color: #aaaaaa;
+@media (hover: hover) {
+    button:hover {
+        background-color: #aaaaaa;
+    }
 }
 
 #checkMark {
