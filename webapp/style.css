@@ -66,6 +66,11 @@ button {
     }
 }
 
+button:active {
+    background-color: #888888;
+    transition: none;
+}
+
 #checkMark {
     width: 15%;
     max-width: 100px;
